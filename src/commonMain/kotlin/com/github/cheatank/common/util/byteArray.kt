@@ -1,5 +1,6 @@
 package com.github.cheatank.common.util
 
+import com.github.cheatank.common.data.LocationData
 import kotlin.experimental.and
 
 /**
@@ -27,6 +28,16 @@ fun ByteArray.readShort(offset: Int): Short? {
  */
 fun ByteArray.readInt(offset: Int): Int? {
     return read(4, offset)
+}
+/**
+ * [ByteArray] から [LocationData] のデータを取り出す。取り出せなければ null
+ */
+fun ByteArray.readLocationData(offset: Int): LocationData? {
+    val id = readShort(offset) ?: return null
+    val x = readInt(offset + 2) ?: return null
+    val y = readInt(offset + 6) ?: return null
+    val direction = readInt(offset + 10) ?: return null
+    return LocationData(id, x, y, direction)
 }
 
 /**
