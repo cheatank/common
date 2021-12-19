@@ -15,7 +15,7 @@ jobs:
           java-version: 17
           cache: gradle
       - name: Test
-        run: ./gradlew test
+        run: ./gradlew allTests
   lint:
     runs-on: ubuntu-latest
     name: Lint
