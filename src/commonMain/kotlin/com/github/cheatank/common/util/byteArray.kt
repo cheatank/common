@@ -1,7 +1,6 @@
 package com.github.cheatank.common.util
 
 import com.github.cheatank.common.data.LocationData
-import kotlin.experimental.and
 
 /**
  * [ByteArray] から指定した [length] で整数値を取り出す。取り出せなければ null
@@ -11,7 +10,7 @@ private fun ByteArray.read(length: Int, offset: Int): Int? {
     var result = 0
     repeat(length) {
         result = result shl 8
-        result = result or (get(it + offset) and 0xFF.toByte()).toInt()
+        result = result or get(it + offset).toUByte().toInt()
     }
     return result
 }
@@ -44,16 +43,16 @@ fun ByteArray.readLocationData(offset: Int): LocationData? {
  * [Short] を [ByteArray] として取得する
  */
 fun Short.bytes() = byteArrayOf(
-    ((toInt() shl 8) and 0xFF).toByte(),
-    ((toInt() shl 0) and 0xFF).toByte()
+    ((toInt() shr 8) and 0xFF).toByte(),
+    ((toInt() shr 0) and 0xFF).toByte()
 )
 
 /**
  * [Int] を [ByteArray] として取得する
  */
 fun Int.bytes() = byteArrayOf(
-    ((this shl 24) and 0xFF).toByte(),
-    ((this shl 16) and 0xFF).toByte(),
-    ((this shl 8) and 0xFF).toByte(),
-    ((this shl 0) and 0xFF).toByte()
+    ((this shr 24) and 0xFF).toByte(),
+    ((this shr 16) and 0xFF).toByte(),
+    ((this shr 8) and 0xFF).toByte(),
+    ((this shr 0) and 0xFF).toByte()
 )
