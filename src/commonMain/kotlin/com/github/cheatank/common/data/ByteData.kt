@@ -9,8 +9,8 @@ data class ByteData(val byte: Byte) : PacketData {
             return byteArrayOf(data.byte)
         }
 
-        override fun fromByteArray(array: ByteArray): ByteData {
-            return ByteData(array.first())
+        override fun fromByteArray(array: ByteArray): ByteData? {
+            return array.firstOrNull()?.let(::ByteData)
         }
     }
 }
