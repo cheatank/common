@@ -19,27 +19,22 @@ class PacketTypeTest {
     }
 
     @Test
-    fun SendConfigPacket_can_be_converted() {
-        assertConvertedPacket(PacketType.SendConfig, ConfigData(3, 100), 5)
+    fun JoinQueue_can_be_converted() {
+        assertConvertedPacket(PacketType.JoinQueue, EmptyPacketData, 2)
     }
 
     @Test
-    fun SendPlayer_can_be_converted() {
-        assertConvertedPacket(PacketType.UpdateLocation, LocationData(1, 2, 3, 4), 16)
+    fun StartGamePacket_can_be_converted() {
+        assertConvertedPacket(PacketType.StartGame, ConfigData(3, 100), 5)
     }
 
     @Test
-    fun StartGame_can_be_converted() {
-        assertConvertedPacket(PacketType.StartGame, EmptyPacketData, 2)
-    }
-
-    @Test
-    fun EndGame_can_be_converted() {
+    fun EndGamePacket_can_be_converted() {
         assertConvertedPacket(PacketType.EndGame, EmptyPacketData, 2)
     }
 
     @Test
-    fun JoinQueue_can_be_converted() {
-        assertConvertedPacket(PacketType.JoinQueue, EmptyPacketData, 2)
+    fun UpdateLocationPacket_can_be_converted() {
+        assertConvertedPacket(PacketType.UpdateLocation, LocationData(1, 2, 3, 4), 16)
     }
 }

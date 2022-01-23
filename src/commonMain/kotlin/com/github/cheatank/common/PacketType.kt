@@ -26,32 +26,26 @@ sealed class PacketType<T : PacketData>(val id: Short, val converter: PacketData
     object SendVersion : PacketType<IntData>(1, IntData)
 
     /**
-     * コンフィグの送信
+     * 待ち行列に参加
      */
-    @PacketSender(PacketSenderType.Server)
-    object SendConfig : PacketType<ConfigData>(2, ConfigData)
-
-    /**
-     * プレイヤーの位置情報を更新
-     */
-    @PacketSender(PacketSenderType.Server)
-    object UpdateLocation : PacketType<LocationData>(3, LocationData)
+    @PacketSender(PacketSenderType.Client)
+    object JoinQueue : PacketType<EmptyPacketData>(2, EmptyPacketData)
 
     /**
      * ゲームの開始
      */
     @PacketSender(PacketSenderType.Server)
-    object StartGame : PacketType<EmptyPacketData>(4, EmptyPacketData)
+    object StartGame : PacketType<ConfigData>(3, ConfigData)
 
     /**
      * ゲームの終了
      */
     @PacketSender(PacketSenderType.Server)
-    object EndGame : PacketType<EmptyPacketData>(5, EmptyPacketData)
+    object EndGame : PacketType<EmptyPacketData>(4, EmptyPacketData)
 
     /**
-     * 待ち行列に参加
+     * プレイヤーの位置情報を更新
      */
-    @PacketSender(PacketSenderType.Client)
-    object JoinQueue : PacketType<EmptyPacketData>(6, EmptyPacketData)
+    @PacketSender(PacketSenderType.Server)
+    object UpdateLocation : PacketType<LocationData>(5, LocationData)
 }
