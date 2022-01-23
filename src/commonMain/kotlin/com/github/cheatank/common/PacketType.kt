@@ -5,6 +5,7 @@ import com.github.cheatank.common.data.EmptyPacketData
 import com.github.cheatank.common.data.IntData
 import com.github.cheatank.common.data.LocationData
 import com.github.cheatank.common.data.PacketData
+import com.github.cheatank.common.data.ShortData
 
 /**
  * パケットの種類
@@ -38,14 +39,20 @@ sealed class PacketType<T : PacketData>(val id: Short, val converter: PacketData
     object StartGame : PacketType<ConfigData>(3, ConfigData)
 
     /**
+     * カウントダウン
+     */
+    @PacketSender(PacketSenderType.Server)
+    object Countdown : PacketType<ShortData>(4, ShortData)
+
+    /**
      * ゲームの終了
      */
     @PacketSender(PacketSenderType.Server)
-    object EndGame : PacketType<EmptyPacketData>(4, EmptyPacketData)
+    object EndGame : PacketType<EmptyPacketData>(5, EmptyPacketData)
 
     /**
      * プレイヤーの位置情報を更新
      */
     @PacketSender(PacketSenderType.Server)
-    object UpdateLocation : PacketType<LocationData>(5, LocationData)
+    object UpdateLocation : PacketType<LocationData>(6, LocationData)
 }

@@ -1,6 +1,7 @@
 import com.github.cheatank.common.data.ByteData
 import com.github.cheatank.common.data.ConfigData
 import com.github.cheatank.common.data.IntData
+import com.github.cheatank.common.data.ShortData
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -19,6 +20,22 @@ class PacketDataTest {
             0,
         ).forEach {
             assertEquals(it, IntData.fromByteArray(IntData.toByteArray(IntData(it)))?.int)
+        }
+    }
+
+    @Test
+    fun EmptyShortata_can_be_null() {
+        assertNull(ShortData.fromByteArray(byteArrayOf()))
+    }
+
+    @Test
+    fun ShortData_can_be_converted() {
+        listOf(
+            Short.MAX_VALUE,
+            Short.MIN_VALUE,
+            0,
+        ).forEach {
+            assertEquals(it, ShortData.fromByteArray(ShortData.toByteArray(ShortData(it)))?.short)
         }
     }
 
