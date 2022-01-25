@@ -48,7 +48,7 @@ sealed class PacketType<T : PacketData>(val id: Short, val converter: PacketData
      * ゲームの終了
      */
     @PacketSender(PacketSenderType.Server)
-    object EndGame : PacketType<EmptyPacketData>(5, EmptyPacketData)
+    object EndGame : PacketType<ShortData>(5, ShortData)
 
     /**
      * プレイヤーの位置情報を更新

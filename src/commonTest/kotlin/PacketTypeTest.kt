@@ -36,7 +36,7 @@ class PacketTypeTest {
 
     @Test
     fun EndGamePacket_can_be_converted() {
-        assertConvertedPacket(PacketType.EndGame, EmptyPacketData, 2)
+        assertConvertedPacket(PacketType.EndGame, ShortData(1), 4)
     }
 
     @Test
