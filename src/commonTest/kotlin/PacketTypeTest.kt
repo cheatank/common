@@ -26,12 +26,12 @@ class PacketTypeTest {
 
     @Test
     fun StartGamePacket_can_be_converted() {
-        assertConvertedPacket(PacketType.StartGame, GameData(5, 3, 100), 5)
+        assertConvertedPacket(PacketType.StartGame, GameData(5, 3, 100), 7)
     }
 
     @Test
     fun CountdownPacket_can_be_converted() {
-        assertConvertedPacket(PacketType.Countdown, ShortData(12), 6)
+        assertConvertedPacket(PacketType.Countdown, ShortData(12), 4)
     }
 
     @Test
