@@ -5,6 +5,7 @@ import com.github.cheatank.common.data.EmptyPacketData
 import com.github.cheatank.common.data.IntData
 import com.github.cheatank.common.data.LocationData
 import com.github.cheatank.common.data.PacketData
+import com.github.cheatank.common.data.SelfLocationData
 import com.github.cheatank.common.data.ShortData
 
 /**
@@ -55,4 +56,10 @@ sealed class PacketType<T : PacketData>(val id: Short, val converter: PacketData
      */
     @PacketSender(PacketSenderType.Server)
     object UpdateLocation : PacketType<LocationData>(6, LocationData)
+
+    /**
+     * 自分の位置情報を更新
+     */
+    @PacketSender(PacketSenderType.Client)
+    object UpdateSelfLocation : PacketType<SelfLocationData>(7, SelfLocationData)
 }

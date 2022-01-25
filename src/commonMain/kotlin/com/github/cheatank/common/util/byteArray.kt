@@ -1,6 +1,7 @@
 package com.github.cheatank.common.util
 
 import com.github.cheatank.common.data.LocationData
+import com.github.cheatank.common.data.SelfLocationData
 
 /**
  * [ByteArray] から指定した [length] で整数値を取り出す。取り出せなければ null
@@ -28,6 +29,17 @@ fun ByteArray.readShort(offset: Int): Short? {
 fun ByteArray.readInt(offset: Int): Int? {
     return read(4, offset)
 }
+
+/**
+ * [ByteArray] から [SelfLocationData] のデータを取り出す。取り出せなければ null
+ */
+fun ByteArray.readSelfLocationData(offset: Int): SelfLocationData? {
+    val x = readInt(offset) ?: return null
+    val y = readInt(offset + 4) ?: return null
+    val direction = readInt(offset + 8) ?: return null
+    return SelfLocationData(x, y, direction)
+}
+
 /**
  * [ByteArray] から [LocationData] のデータを取り出す。取り出せなければ null
  */
