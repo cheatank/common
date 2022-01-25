@@ -1,5 +1,5 @@
 import com.github.cheatank.common.data.ByteData
-import com.github.cheatank.common.data.ConfigData
+import com.github.cheatank.common.data.GameData
 import com.github.cheatank.common.data.IntData
 import com.github.cheatank.common.data.ShortData
 import kotlin.test.Test
@@ -56,25 +56,32 @@ class PacketDataTest {
     }
 
     @Test
-    fun ConfigData_can_be_null() {
-        assertNull(ConfigData.fromByteArray(byteArrayOf()))
+    fun GameData_can_be_null() {
+        assertNull(GameData.fromByteArray(byteArrayOf()))
     }
 
     @Test
-    fun ConfigData_can_be_converted() {
+    fun GameData_can_be_converted() {
         listOf(
-            Byte.MAX_VALUE,
-            Byte.MIN_VALUE,
+            Short.MAX_VALUE,
+            Short.MIN_VALUE,
             0,
-        ).forEach { lifeCount ->
+        ).forEach { id ->
             listOf(
-                Short.MAX_VALUE,
-                Short.MIN_VALUE,
+                Byte.MAX_VALUE,
+                Byte.MIN_VALUE,
                 0,
-            ).forEach { timeLimit ->
-                val data = ConfigData.fromByteArray(ConfigData.toByteArray(ConfigData(lifeCount, timeLimit)))
-                assertEquals(lifeCount, data?.lifeCount)
-                assertEquals(timeLimit, data?.timeLimit)
+            ).forEach { lifeCount ->
+                listOf(
+                    Short.MAX_VALUE,
+                    Short.MIN_VALUE,
+                    0,
+                ).forEach { timeLimit ->
+                    val data = GameData.fromByteArray(GameData.toByteArray(GameData(id, lifeCount, timeLimit)))
+                    assertEquals(id, data?.id)
+                    assertEquals(lifeCount, data?.lifeCount)
+                    assertEquals(timeLimit, data?.timeLimit)
+                }
             }
         }
     }

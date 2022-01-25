@@ -1,6 +1,6 @@
 package com.github.cheatank.common
 
-import com.github.cheatank.common.data.ConfigData
+import com.github.cheatank.common.data.GameData
 import com.github.cheatank.common.data.EmptyPacketData
 import com.github.cheatank.common.data.IntData
 import com.github.cheatank.common.data.LocationData
@@ -36,7 +36,7 @@ sealed class PacketType<T : PacketData>(val id: Short, val converter: PacketData
      * ゲームの開始
      */
     @PacketSender(PacketSenderType.Server)
-    object StartGame : PacketType<ConfigData>(3, ConfigData)
+    object StartGame : PacketType<GameData>(3, GameData)
 
     /**
      * カウントダウン

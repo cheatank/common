@@ -1,6 +1,6 @@
 
 import com.github.cheatank.common.PacketType
-import com.github.cheatank.common.data.ConfigData
+import com.github.cheatank.common.data.GameData
 import com.github.cheatank.common.data.EmptyPacketData
 import com.github.cheatank.common.data.IntData
 import com.github.cheatank.common.data.LocationData
@@ -26,7 +26,7 @@ class PacketTypeTest {
 
     @Test
     fun StartGamePacket_can_be_converted() {
-        assertConvertedPacket(PacketType.StartGame, ConfigData(3, 100), 5)
+        assertConvertedPacket(PacketType.StartGame, GameData(5, 3, 100), 5)
     }
 
     @Test
